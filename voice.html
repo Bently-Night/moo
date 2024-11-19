@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Language High Pitch Echo</title>
+</head>
+
+<body>
+    <h1>Say Something!</h1>
+    <label for="language-select">Choose a language:</label>
+    <select id="language-select">
+        <option value="en-US">English (US)</option>
+        <option value="es-ES">Spanish (Spain)</option>
+        <option value="fr-FR">French</option>
+        <option value="de-DE">German</option>
+        <option value="hi-IN">Hindi</option>
+        <option value="zh-CN">Chinese (Mandarin)</option>
+        <option value="ar-SA">Arabic</option>
+    </select>
+
+</body>
+
+<style>
+    /* Global Styles */
+    
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    /* Heading Style */
+    
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        color: #fff;
+    }
+    /* Label Style */
+    
+    label {
+        font-size: 1.2rem;
+        margin-right: 10px;
+        color: #fff;
+    }
+    /* Select Dropdown Style */
+    
+    select {
+        font-size: 1rem;
+        padding: 0.5rem;
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 1.5rem;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #fff;
+    }
+</style>
+
+<script>
+    const languageSelect = document.getElementById('language-select');
+    const recognition = new(window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+    recognition.continuous = true; // Continuous listening
+    recognition.lang = languageSelect.value; // Set the language for recognition
+
+    recognition.onresult = function(event) {
+        // When speech is detected, play the 'moo.mp3' sound
+        const mooSound = new Audio('moo.mp3'); // Assuming moo.mp3 is in the same directory
+        mooSound.play();
+    };
+
+    // Start speech recognition
+    recognition.start();
+</script>
+
+</html>
